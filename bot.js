@@ -142,6 +142,7 @@ bot.command('meal', async (ctx) => {
 bot.action(/pr_.*/gm, async (ctx) => {
   const tag = ctx.match[0].split('_')[1];
   bot.telegram.sendMessage(chatId, await notion.getPR(tag), { parse_mode: 'HTML' });
+  console.log('')
   // return ctx.reply(await notion.getPR(tag));
 });
 bot.action(/updatechoose_.*/gm, async (ctx) => {
