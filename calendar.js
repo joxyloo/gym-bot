@@ -114,7 +114,6 @@ exports.getLocalDate = function () {};
 exports.getDay = function () {
   const localDate = new Date().toLocaleDateString('en-US', { timeZone: 'Asia/Kuala_Lumpur' });
   const day = new Date(localDate).getDay();
-  console.log(day);
   return day;
 };
 
