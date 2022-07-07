@@ -18,18 +18,21 @@ exports.getPR = async function (tag) {
     },
     sorts: [
       {
-        timestamp: 'last_edited_time',
-        direction: 'descending',
+        property: 'Name',
+        direction: 'ascending',
       },
     ],
   });
 
+  const dateArray = response.results.map(x => x.last_edited_time);
+  const lastUpdated = dateArray.sort((a,b)=>b-a)[0];
+  
   var str = 'Last updated: ' + new Date(response.results[0].last_edited_time).toLocaleDateString('en-GB') + '\n\n';
   response.results.forEach((result) => {
-    str += result.properties['Name'].title[0].plain_text;
-    str += ' - ';
-    str += result.properties['Weight'].rich_text[0].plain_text;
+    str += `⭐️ <b>${result.properties['Name'].title[0].plain_text}</b>`;
     str += '\n';
+    str += `     ${result.properties['Weight'].rich_text[0].plain_text}`;
+    str += '\n\n';
   });
 
   return str;
@@ -46,8 +49,8 @@ exports.getWorkout = async function (tag) {
     },
     sorts: [
       {
-        timestamp: 'last_edited_time',
-        direction: 'descending',
+        property: 'Name',
+        direction: 'ascending',
       },
     ],
   });
